@@ -1,14 +1,14 @@
-import frappe
+# custom_app/overrides/employee.py
 
-def employee_active_inactive_override(self, enabled):
-    # Check if the user's status is not "Active"
+import frappe
+from frappe import _
+
+def override_validate_for_enabled_user_id(self, enabled):
     if not self.status == "Active":
         return
 
-    # If enabled is None, throw an error that the user does not exist
     if enabled is None:
-        frappe.throw("User {0} does not exist").format(self.user_id)
+        return  # Simply return without throwing an error
 
-    # If enabled is 0, simply pass and do nothing
     if enabled == 0:
-        return
+        return  # Simply return without throwing an error if the user is disabled

@@ -156,17 +156,12 @@ after_migrate = [
 # Hook on document methods and events
 
 doc_events = {
- "Employee": {
+    "Employee": {
         "after_insert": "sahayog.doc_events.create_user_from_employee.create_user",
-      
-
+     
         "before_save": [
             "sahayog.doc_events.capital_emp_name.capital_emp_name",
-            
-        ],
-        "before_save": [
-             "sahayog.doc_events.employee.emp_enable_disable",
-            
+            "sahayog.doc_events.employee.emp_enable_disable",
         ],
     },
     "User": {
@@ -222,9 +217,9 @@ doc_events = {
 
 override_whitelisted_methods = {
     "frappe.model.naming.set_name_by_naming_series": "sahayog.override.employee_naming.set_name_by_naming_series_override",
-    "frappe.core.doctype.employee.employee.Employee.validate_for_enabled_user_id": "sahayog.override.employee_active_inactive.employee_active_inactive"
+    "erpnext.setup.doctype.employee.employee.Employee.validate_for_enabled_user_id": "sahayog.override.employee_active_inactive.custom_validate_for_enabled_user_id"
 }
-#
+#apps/erpnext/erpnext/setup/doctype/employee/employee.py
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps

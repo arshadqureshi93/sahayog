@@ -10,6 +10,7 @@ def execute():
             print(f"Role Profile '{module_profile_name}' already exists.")
         else:
             # Create a new Role Profile document
+            
             doc = frappe.new_doc('Module Profile')
             doc.module_profile_name = module_profile_name  # Set 'Employee' as the role name
             
